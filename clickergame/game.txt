@@ -55,7 +55,7 @@ Shinies
 				//get at least 7, or between 1 and 3 minutes of our vote production
 				$amount=max(7,random(votes:ps*60*1,votes:ps*60*3))*$boost
 				toast The lucky vote grants you<//><b>[$amount] votes</b>.
-				yield $amount bunnies
+				yield $amount votes
 			else
 				$amount=1*$boost
 				toast The lucky vote grants you<//><b>[$amount] vote[s?$amount]</b>!
