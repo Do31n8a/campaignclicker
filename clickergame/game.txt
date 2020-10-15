@@ -17,7 +17,7 @@ Buttons
 		desc:Click this to get more votes!
 		on click:anim icon wobble
 		on click:yield 1 vote
-		on click:if (have goldenTouch and chance(1%)) yield 1 goldenVote
+		on click:if (have goldenFace and chance(1%)) yield 1 goldenVote
 		icon:pictures/votebutton.png
 		no text
 		class:bigButton hasFlares
@@ -98,3 +98,11 @@ Buildings
 		cost:4000 votes
 		on tick:yield 12 votes
 		req:4000 votes:earned
+
+Upgrades
+	*goldenFace
+		name:Golden smile
+		desc:You look so good, that people don't even care about your corruption.<//><b>Effect:</b><.>1% chance of gaining 1 golden vote per vote click
+		icon:icons[2,5]
+		cost:1 goldenVote
+		req:1 goldenVote:earned
