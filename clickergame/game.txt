@@ -106,3 +106,10 @@ Upgrades
 		icon:icons[2,5]
 		cost:1 goldenVote
 		req:1 goldenVote:earned
+	
+	*clover
+		name:Clover
+		desc:Find a four leaf clover.<//><b>Effect:</b><.>lucky vote effects are 4 times more powerful
+		icon:icons[2,8]
+		cost:100 goldenVotes
+		req:50 goldenVotes:earned
