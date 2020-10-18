@@ -11,6 +11,9 @@ Settings
 	building cost increase:115%
 	building cost refund:50%
 
+Layout
+	use default
+
 Buttons
 	*corruptionButton
 		name:Forge a vote
@@ -99,17 +102,325 @@ Buildings
 		on tick:yield 12 votes
 		req:4000 votes:earned
 
+	*obelisk|obelisks
+		name:Obelisk|Obelisks
+		desc:Build an obelisk and intimidate people into voting for you.<//><b>Effect:</b><.>Produces 90 votes per second.
+		icon:pictures/obelisk.png
+		cost:20000 votes
+		on tick:yield 90 votes
+		req:20000 votes:earned
+	
+	*propaganda
+		name:Propaganda
+		desc:Convince people that your way is the best way.<//><b>Effect:</b><.>Produces 300 votes per second.
+		icon:pictures/propaganda.png
+		cost:200000 votes, 1 goldenVote
+		on tick:yield 300 votes
+		req:200000 votes:earned and independenceDay
+		
+	*citadel|citadels
+		name:Citadel|Citadels
+		desc:A massive fortress that looms over your lessers.<//><b>Effect:</b><.>Produces 1000 votes per second.
+		icon:pictures/citadel.png
+		cost:3000000 votes, 4 goldenVotes
+		on tick:yield 1000 votes
+		req:3000000 votes:earned and independenceDay
+		
+	*murder
+		name:Murder
+		desc:Kill all of your opposition and those who don't vote for you.<//><b>Effect:</b><.>Produces 4000 votes per second.
+		icon:pictures/murder.png
+		cost:70000000 votes, 16 goldenVotes
+		on tick:yield 4000 votes
+		on tick:if (have moonMurder) yield 0.01 goldenVote
+		req:70000000 votes:earned and independenceDay
+		
+	*bunker
+		name:Nuclear Bunker
+		text:Nuclear Bunker ([this]%).
+		desc:A huge nuclear bunker. A mass storage device of nuclear weapons and defense mechanisms.<//><b>The bunker is [this]% complete.</b>
+		icon:pictures/bunker.png
+		cost:300000000 votes, 100 goldenVote
+		req:70000000 votes:earned and independenceDay
+		limit:100
+		cost increase:105%
+
 Upgrades
+	*TEMPLATE
+		on click:anim glow
+	
+	*writefaster
+		name:Write Faster
+		desc:The faster you can write, the more votes you can forge.<//><b>Effect:</b><.>+1 vote/click
+		icon:pictures/pen.png
+		cost:100 votes
+		passive:increase vote yield of corruptionButton by 1
+		req:10 votes:earned
+		
+	*writeevenfaster
+		name:Write Even Faster
+		desc:The faster you can write, the more votes you can forge.<//><b>Effect:</b><.>+1 vote/click
+		icon:pictures/pen.png
+		cost:200 votes
+		passive:increase vote yield of corruptionButton by 1
+		req:50 votes:earned
+		
+	*fasthands
+		name:A Human Keyboard
+		desc:Your handwriting speed out-classes most people who write with a keyboard.<//><b>Effect:</b><.>+1 vote/click
+		icon:pictures/pen.png
+		cost:400 votes
+		passive:increase vote yield of corruptionButton by 1
+		req:200 votes:earned
+		
+	*energydrink
+		name:Energy Drink
+		desc:Increased energy means increased performance!<//><b>Effect:</b><.>votes/click x2<.>vote production +5%
+		icon:pictures/energydrink.png
+		cost:3000 votes
+		passive:multiply vote yield of corruptionButton by 2
+		passive:multiply yield of votes by 1.05
+		req:1000 votes:earned
+		
+	*coffee
+		name:Coffee
+		desc:A double shot espresso will do the trick!<//><b>Effect:</b><.>votes/click x1.5<.>vote production +5%
+		icon:pictures/coffee.png
+		cost:10000 votes
+		passive:multiply vote yield of corruptionButton by 1.5
+		passive:multiply yield of votes by 1.05
+		req:1000 bunnies:earned
+		
+	*slaves
+		name:Slaves
+		desc:Get a few slaves to do some extra work.<//><b>Effect:</b><.>votes/click x1.5<.>vote production +5%
+		icon:pictures/slave.png
+		cost:50000 votes
+		passive:multiply vote yield of bunnyButton by 1.5
+		passive:multiply yield of votes by 1.05
+		req:10000 votes:earned
+		
+	*moreslaves
+		name:More Slaves
+		desc:More slaves means more work being done!<//><b>Effect:</b><.>votes/click x1.5<.>vote production +5%
+		icon:pictures/slave.png
+		cost:100000 votes
+		passive:multiply vote yield of corruptionButton by 1.5
+		passive:multiply yield of votes by 1.05
+		req:50000 votes:earned
+		
+	*strongerslaves
+		name:Stronger Slaves
+		desc:Your slaves take some steroids.<//><b>Effect:</b><.>votes/click x1.5<.>vote production +5%
+		icon:pictures/slave.png
+		cost:500000 votes
+		passive:multiply vote yield of bunnyButton by 1.5
+		passive:multiply yield of votes by 1.05
+		req:100000 votes:earned
+		
+	*blackmarket
+		name:Blackmarket "sweets"
+		desc:Get some "performance enhancing sweets" from the black market.<//><b>Effect:</b><.>votes/click x1.5<.>vote production +5%
+		icon:pictures/sweets.png
+		cost:1000000 votes
+		passive:multiply vote yield of corruptionButton by 1.5
+		passive:multiply yield of votes by 1.05
+		req:500000 votes:earned
+		
+	*hotwife
+		name:A Hot Wife
+		desc:Your wife is even hotter than you! Everyone wants to vote for you now.<//><b>Effect:</b><.>votes/click x2<.>vote production +10%
+		icon:pictures/wife.png
+		cost:100000000 votes
+		passive:multiply vote yield of corruptionButton by 2
+		passive:multiply yield of votes by 1.1
+		req:1000000 votes:earned
+	
+	//building upgrades
+	
+	*buildingUpgrade1
+		name:Friends
+		desc:Increase Production<//><b>Effect:</b><.>forger vote production x2<.>printer vote production x2<.>blackmail vote production x2
+		icon:pictures/friends.png
+		cost:1000 votes
+		passive:multiply yield of forger by 2
+		passive:multiply yield of printer by 2
+		passive:multiply yield of blackmail by 2
+		req:(forgers>=10 or printers>=10 or blackmail>=10)
+		
+	*buildingUpgrade2
+		name:More Friends
+		desc:Increase Production<//><b>Effect:</b><.>forger vote production x2<.>printer vote production x2<.>blackmail vote production x2
+		icon:pictures/friends.png
+		cost:100000 votes
+		passive:multiply yield of forger by 2
+		passive:multiply yield of printer by 2
+		passive:multiply yield of blackmail by 2
+		req:(forgers>=50 or printers>=50 or blackmail>=50)
+		
+	*buildingUpgrade3
+		name:Even More Friends
+		desc:Increase Production<//><b>Effect:</b><.>forger vote production x2<.>printer vote production x2<.>blackmail vote production x2
+		icon:pictures/friends.png
+		cost:5000000 votes
+		passive:multiply yield of forger by 2
+		passive:multiply yield of printer by 2
+		passive:multiply yield of blackmail by 2
+		req:(forgers>=100 or printers>=100 or blackmail>=100)
+		
+	*buildingUpgrade4
+		name:Emos
+		desc:Paint your obelisks black to get the Emos to vote for you.<//><b>Effect:</b><.>bribery vote production x2<.>obelisk vote production x2
+		icon:pictures/emoobelisk.png
+		cost:50000 votes
+		passive:multiply yield of bribery by 2
+		passive:multiply yield of obelisk by 2
+		req:(bribery>=10 or obelisk>=10)
+		
+	*buildingUpgrade5
+		name:Gays
+		desc:Paint your obelisks rainbow to get the Gays to vote for you.<//><b>Effect:</b><.>bribery vote production x2<.>obelisk vote production x2
+		icon:pictures/emoobelisk.png
+		cost:5000000 votes
+		passive:multiply yield of bribery by 2
+		passive:multiply yield of obelisk by 2
+		req:(bribery>=50 or obelisk>=50)
+		
+	*buildingUpgrade6
+		name:Building "Advertisements"
+		desc:"Advertise" your campaign on buildings.<//><b>Effect:</b><.>propaganda vote production x2<.>citadel vote production x2
+		icon:pictures/advertisements.png
+		cost:1000000 votes
+		passive:multiply yield of propaganda by 2
+		passive:multiply yield of citadels by 2
+		req:(propaganda>=10 or citadels>=10)
+		
+	*buildingUpgrade7
+		name:Accidental Advertisements
+		desc:"Accidentally" advertise on oppositions buildings.<//><b>Effect:</b><.>propaganda vote production x2<.>citadel vote production x2
+		icon:pictures/advertisements.png
+		cost:500000000 votes
+		passive:multiply yield of propaganda by 2
+		passive:multiply yield of citadels by 2
+		req:(propaganda>=50 or citadels>=50)
+		
+	*buildingUpgrade8
+		name:Better Hitman
+		desc:Because your last hitman wasn't efficient enough.<//><b>Effect:</b><.>murder vote production x2
+		icon:pictures/murder.png
+		cost:1000000000 votes
+		passive:multiply yield of murder by 2
+		req:10 murder
+
+	//golden vote upgrades
+
 	*goldenFace
-		name:Golden smile
+		name:Golden Body
 		desc:You look so good, that people don't even care about your corruption.<//><b>Effect:</b><.>1% chance of gaining 1 golden vote per vote click
-		icon:icons[2,5]
+		icon:pictures/goldenface.png
 		cost:1 goldenVote
 		req:1 goldenVote:earned
 	
+	*rabbitHaste
+		name:Lucky Vote Upgrade 1
+		desc:please suggest a name and description for this upgrade<//><b>Effect:</b><.>lucky votes appear 30% more often
+		icon:pictures/luckyvote.png
+		passive:multiply frequency of luckyVote by 0.7
+		cost:5 goldenVotes
+		req:1 goldenVote:earned
+	
+	*independenceDay
+		name:The Next Stage
+		desc:You're finally getting enough votes for better buildings.<//><b>Effect:</b><.>unlocks new buildings
+		icon:pictures/bunker.png
+		cost:10 goldenVotes
+		req:5 goldenVotes:earned
+
 	*clover
 		name:Clover
 		desc:Find a four leaf clover.<//><b>Effect:</b><.>lucky vote effects are 4 times more powerful
-		icon:icons[2,8]
+		icon:pictures/clover.png
 		cost:100 goldenVotes
 		req:50 goldenVotes:earned
+
+	*moonMurder
+		name:Moon murder
+		desc:The moon doesn't have laws!<//><b>Effect:</b><.>murder now produces 1 golden vote every 100 seconds
+		icon:pictures/murder.png
+		cost:100 goldenVotes
+		req:50 goldenVotes:earned
+		
+Achievements
+	*TEMPLATE
+		on click:anim glow
+		
+	*voteAchiev1
+		name:And it begins...
+		desc:Have <b>1</b> vote.
+		req:1 vote
+		icon:pictures/luckyvote.png
+	*voteAchiev2
+		name:Picking up the pace
+		desc:Have <b>1000</b> votes.
+		req:1000 votes
+		icon:pictures/luckyvote.png
+	*voteAchiev3
+		name:The whole of sweden!
+		desc:Have <b>1000000</b> votes.
+		req:10000000 votes
+		icon:pictures/luckyvote.png
+		
+	*clickAchiev1
+		name:Starting a career
+		desc:Click the forge button <b>10</b> times.
+		req:10 corruptionButton clicks
+		icon:pictures/luckyvote.png
+	*clickAchiev2
+		name:100!
+		desc:Click the forge button <b>100</b> times.
+		req:100 corruptionButton clicks
+		icon:pictures/luckyvote.png
+	*clickAchiev3
+		name:Aren't you tired?
+		desc:Click the forge button <b>2000</b> times.
+		req:2000 corruptionButton clicks
+		icon:pictures/luckyvote.png
+		
+	*votePsAchiev1
+		name:10 votes a second!
+		desc:Produce <b>10</b> votes per second.
+		req:10 votes per second
+		icon:pictures/luckyvote.png
+	*votePsAchiev2
+		name:That's alotta votes
+		desc:Produce <b>1000</b> votes per second.
+		req:1000 votes per second
+		icon:pictures/luckyvote.png
+	*votePsAchiev3
+		name:Kinda sus
+		desc:Produce <b>100000</b> votes per second.
+		req:100000 votes per second
+		icon:pictures/luckyvote.png
+		
+	*goldenvoteAchiev1
+		name:My precious
+		desc:Have <b>1</b> golden vote.
+		req:1 goldenVote
+		icon:pictures/luckyvote.png
+	*goldenvoteAchiev2
+		name:All that glitters is gold
+		desc:Have <b>100</b> golden votes.
+		req:100 goldenVote
+		icon:pictures/luckyvote.png
+	*goldenvoteAchiev3
+		name:A small loan
+		desc:Have <b>1000</b> golden votes.
+		req:1000 goldenVote
+		icon:pictures/luckyvote.png
+	
+	*bunkerAchiev
+		name:Warfare
+		desc:Complete building the <b>nuclear bunker</b>.<//>This is it. You beat the game!
+		req:100 bunker
+		icon:pictures/bunker.png
+		
